@@ -32,8 +32,9 @@ def testData(net1, criterion, CUDA_DEVICE, testloader10, testloader, nnName, dat
     g1 = open("./softmax_scores/confidence_Our_In.txt", 'w')
     g2 = open("./softmax_scores/confidence_Our_Out.txt", 'w')
     N = 10000
-    if dataName == "iSUN": N = 8925
-    print("Processing in-distribution images")
+    if dataName == "iSUN":
+        N = 8925
+        print("Processing in-distribution images")
 ########################################In-distribution###########################################
     for j, data in enumerate(testloader10):
         if j<1000: continue

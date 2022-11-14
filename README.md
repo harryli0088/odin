@@ -37,6 +37,12 @@ Wide ResNet     |  3.71       | 19.86
 
 	**Note:** Reproducing results of DenseNet-BC only requires **one** GPU, but reproducing results of Wide ResNet requires **three** GPUs. Single GPU version for Wide ResNet will be released soon in the future.  
 
+```
+conda create --name odin python=3.8
+conda activate odin
+pip install torch torchvision numpy scipy
+```
+
 ### Downloading  Out-of-Distribtion Datasets
 We provide download links of five out-of-distributin datasets:
 

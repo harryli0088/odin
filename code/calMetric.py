@@ -33,12 +33,12 @@ def tpr95(name):
     T = 1
     cifar = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
     other = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
-    if name == "CIFAR-10": 
-	start = 0.1
-	end = 1 
-    if name == "CIFAR-100": 
-	start = 0.01
-	end = 1    
+    if name == "CIFAR-10":
+        start = 0.1
+        end = 1 
+    if name == "CIFAR-100":
+        start = 0.01
+        end = 1    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
     Y1 = other[:, 2]
@@ -57,12 +57,12 @@ def tpr95(name):
     T = 1000
     cifar = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
     other = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
-    if name == "CIFAR-10": 
-	start = 0.1
-	end = 0.12 
-    if name == "CIFAR-100": 
-	start = 0.01
-	end = 0.0104    
+    if name == "CIFAR-10":
+        start = 0.1
+        end = 0.12 
+    if name == "CIFAR-100":
+        start = 0.01
+        end = 0.0104    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
     Y1 = other[:, 2]
@@ -85,12 +85,12 @@ def auroc(name):
     T = 1
     cifar = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
     other = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
-    if name == "CIFAR-10": 
-	start = 0.1
-	end = 1 
-    if name == "CIFAR-100": 
-	start = 0.01
-	end = 1    
+    if name == "CIFAR-10":
+        start = 0.1
+        end = 1 
+    if name == "CIFAR-100":
+        start = 0.01
+        end = 1    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
     Y1 = other[:, 2]
@@ -107,12 +107,12 @@ def auroc(name):
     T = 1000
     cifar = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
     other = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
-    if name == "CIFAR-10": 
-	start = 0.1
-	end = 0.12 
-    if name == "CIFAR-100": 
-	start = 0.01
-	end = 0.0104    
+    if name == "CIFAR-10":
+        start = 0.1
+        end = 0.12 
+    if name == "CIFAR-100":
+        start = 0.01
+        end = 0.0104    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
     Y1 = other[:, 2]
@@ -133,12 +133,12 @@ def auprIn(name):
     T = 1
     cifar = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
     other = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
-    if name == "CIFAR-10": 
-	start = 0.1
-	end = 1 
-    if name == "CIFAR-100": 
-	start = 0.01
-	end = 1    
+    if name == "CIFAR-10":
+        start = 0.1
+        end = 1 
+    if name == "CIFAR-100":
+        start = 0.01
+        end = 1    
     gap = (end- start)/100000
     precisionVec = []
     recallVec = []
@@ -164,12 +164,12 @@ def auprIn(name):
     T = 1000
     cifar = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
     other = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
-    if name == "CIFAR-10": 
-	start = 0.1
-	end = 0.12 
-    if name == "CIFAR-100": 
-	start = 0.01
-	end = 0.0104    
+    if name == "CIFAR-10":
+        start = 0.1
+        end = 0.12 
+    if name == "CIFAR-100":
+        start = 0.01
+        end = 0.0104    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
     Y1 = other[:, 2]
@@ -195,12 +195,12 @@ def auprOut(name):
     T = 1
     cifar = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
     other = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
-    if name == "CIFAR-10": 
-	start = 0.1
-	end = 1 
-    if name == "CIFAR-100": 
-	start = 0.01
-	end = 1    
+    if name == "CIFAR-10":
+        start = 0.1
+        end = 1 
+    if name == "CIFAR-100":
+        start = 0.01
+        end = 1    
     gap = (end- start)/100000
     Y1 = other[:, 2]
     X1 = cifar[:, 2]
@@ -221,12 +221,12 @@ def auprOut(name):
     T = 1000
     cifar = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
     other = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
-    if name == "CIFAR-10": 
-	start = 0.1
-	end = 0.12 
-    if name == "CIFAR-100": 
-	start = 0.01
-	end = 0.0104    
+    if name == "CIFAR-10":
+        start = 0.1
+        end = 0.12 
+    if name == "CIFAR-100":
+        start = 0.01
+        end = 0.0104    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
     Y1 = other[:, 2]
@@ -253,11 +253,11 @@ def detection(name):
     cifar = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
     other = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
     if name == "CIFAR-10": 
-	start = 0.1
-	end = 1 
+        start = 0.1
+        end = 1 
     if name == "CIFAR-100": 
-	start = 0.01
-	end = 1    
+        start = 0.01
+        end = 1    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
     Y1 = other[:, 2]
@@ -273,11 +273,11 @@ def detection(name):
     cifar = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
     other = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
     if name == "CIFAR-10": 
-	start = 0.1
-	end = 0.12 
+        start = 0.1
+        end = 0.12 
     if name == "CIFAR-100": 
-	start = 0.01
-	end = 0.0104    
+        start = 0.01
+        end = 0.0104    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
     Y1 = other[:, 2]
