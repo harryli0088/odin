@@ -299,6 +299,7 @@ def metric(nn, data):
     if nn == "densenet10" or nn == "densenet100": nnStructure = "DenseNet-BC-100"
     if nn == "wideresnet10" or nn == "wideresnet100": nnStructure = "Wide-ResNet-28-10"
     
+    dataName = ""
     if data == "Imagenet": dataName = "Tiny-ImageNet (crop)"
     if data == "Imagenet_resize": dataName = "Tiny-ImageNet (resize)"
     if data == "LSUN": dataName = "LSUN (crop)"
@@ -306,6 +307,7 @@ def metric(nn, data):
     if data == "iSUN": dataName = "iSUN"
     if data == "Gaussian": dataName = "Gaussian noise"
     if data == "Uniform": dataName = "Uniform Noise"
+    if data == "SVHN_Cropped": dataName = "SVHN_Cropped"
     fprBase, fprNew = tpr95(indis)
     errorBase, errorNew = detection(indis)
     aurocBase, aurocNew = auroc(indis)
