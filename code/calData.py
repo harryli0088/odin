@@ -25,14 +25,14 @@ import numpy as np
 import time
 from scipy import misc
 
-def testData(net1, criterion, CUDA_DEVICE, testloader10, testloader, nnName, dataName, noiseMagnitude1, temper):
+def testData(net1, criterion, CUDA_DEVICE, testloader10, testloader, nnName, in_data_name, out_data_name, noiseMagnitude1, temper):
     t0 = time.time()
     f1 = open("./softmax_scores/confidence_Base_In.txt", 'w')
     f2 = open("./softmax_scores/confidence_Base_Out.txt", 'w')
     g1 = open("./softmax_scores/confidence_Our_In.txt", 'w')
     g2 = open("./softmax_scores/confidence_Our_Out.txt", 'w')
     N = 10000
-    if dataName == "iSUN":
+    if out_data_name == "iSUN":
         N = 8925
         print("Processing in-distribution images")
 ########################################In-distribution###########################################
@@ -146,7 +146,7 @@ def testData(net1, criterion, CUDA_DEVICE, testloader10, testloader, nnName, dat
 
 
 
-def testGaussian(net1, criterion, CUDA_DEVICE, testloader10, testloader, nnName, dataName, noiseMagnitude1, temper):
+def testGaussian(net1, criterion, CUDA_DEVICE, testloader10, testloader, nnName, out_data_name, noiseMagnitude1, temper):
     t0 = time.time()
     f1 = open("./softmax_scores/confidence_Base_In.txt", 'w')
     f2 = open("./softmax_scores/confidence_Base_Out.txt", 'w')
@@ -271,7 +271,7 @@ def testGaussian(net1, criterion, CUDA_DEVICE, testloader10, testloader, nnName,
 
 
 
-def testUni(net1, criterion, CUDA_DEVICE, testloader10, testloader, nnName, dataName, noiseMagnitude1, temper):
+def testUni(net1, criterion, CUDA_DEVICE, testloader10, testloader, nnName, out_data_name, noiseMagnitude1, temper):
     t0 = time.time()
     f1 = open("./softmax_scores/confidence_Base_In.txt", 'w')
     f2 = open("./softmax_scores/confidence_Base_Out.txt", 'w')

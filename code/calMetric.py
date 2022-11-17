@@ -26,23 +26,22 @@ import numpy as np
 import time
 from scipy import misc
 
-
-def tpr95(name):
+def tpr95(in_dataset_name):
     #calculate the falsepositive error when tpr is 95%
     # calculate baseline
     T = 1
-    cifar = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
-    other = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
-    if name == "CIFAR-10":
-        start = 0.1
-        end = 1 
-    if name == "CIFAR-100":
+    in_distro_scores = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
+    out_distro_scores = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
+    # if in_dataset_name == "CIFAR-10":
+    start = 0.1
+    end = 1 
+    if in_dataset_name == "CIFAR-100":
         start = 0.01
         end = 1    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
-    Y1 = other[:, 2]
-    X1 = cifar[:, 2]
+    Y1 = out_distro_scores[:, 2]
+    X1 = in_distro_scores[:, 2]
     total = 0.0
     fpr = 0.0
     for delta in np.arange(start, end, gap):
@@ -55,18 +54,18 @@ def tpr95(name):
 
     # calculate our algorithm
     T = 1000
-    cifar = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
-    other = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
-    if name == "CIFAR-10":
-        start = 0.1
-        end = 0.12 
-    if name == "CIFAR-100":
+    in_distro_scores = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
+    out_distro_scores = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
+    # if in_dataset_name == "CIFAR-10":
+    start = 0.1
+    end = 0.12 
+    if in_dataset_name == "CIFAR-100":
         start = 0.01
         end = 0.0104    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
-    Y1 = other[:, 2]
-    X1 = cifar[:, 2]
+    Y1 = out_distro_scores[:, 2]
+    X1 = in_distro_scores[:, 2]
     total = 0.0
     fpr = 0.0
     for delta in np.arange(start, end, gap):
@@ -79,22 +78,22 @@ def tpr95(name):
             
     return fprBase, fprNew
 
-def auroc(name):
+def auroc(in_dataset_name):
     #calculate the AUROC
     # calculate baseline
     T = 1
-    cifar = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
-    other = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
-    if name == "CIFAR-10":
-        start = 0.1
-        end = 1 
-    if name == "CIFAR-100":
+    in_distro_scores = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
+    out_distro_scores = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
+    # if in_dataset_name == "CIFAR-10":
+    start = 0.1
+    end = 1 
+    if in_dataset_name == "CIFAR-100":
         start = 0.01
         end = 1    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
-    Y1 = other[:, 2]
-    X1 = cifar[:, 2]
+    Y1 = out_distro_scores[:, 2]
+    X1 = in_distro_scores[:, 2]
     aurocBase = 0.0
     fprTemp = 1.0
     for delta in np.arange(start, end, gap):
@@ -105,18 +104,18 @@ def auroc(name):
     aurocBase += fpr * tpr
     # calculate our algorithm
     T = 1000
-    cifar = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
-    other = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
-    if name == "CIFAR-10":
-        start = 0.1
-        end = 0.12 
-    if name == "CIFAR-100":
+    in_distro_scores = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
+    out_distro_scores = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
+    # if in_dataset_name == "CIFAR-10":
+    start = 0.1
+    end = 0.12 
+    if in_dataset_name == "CIFAR-100":
         start = 0.01
         end = 0.0104    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
-    Y1 = other[:, 2]
-    X1 = cifar[:, 2]
+    Y1 = out_distro_scores[:, 2]
+    X1 = in_distro_scores[:, 2]
     aurocNew = 0.0
     fprTemp = 1.0
     for delta in np.arange(start, end, gap):
@@ -127,24 +126,24 @@ def auroc(name):
     aurocNew += fpr * tpr
     return aurocBase, aurocNew
 
-def auprIn(name):
+def auprIn(in_dataset_name):
     #calculate the AUPR
     # calculate baseline
     T = 1
-    cifar = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
-    other = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
-    if name == "CIFAR-10":
-        start = 0.1
-        end = 1 
-    if name == "CIFAR-100":
+    in_distro_scores = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
+    out_distro_scores = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
+    # if in_dataset_name == "CIFAR-10":
+    start = 0.1
+    end = 1 
+    if in_dataset_name == "CIFAR-100":
         start = 0.01
         end = 1    
     gap = (end- start)/100000
     precisionVec = []
     recallVec = []
         #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
-    Y1 = other[:, 2]
-    X1 = cifar[:, 2]
+    Y1 = out_distro_scores[:, 2]
+    X1 = in_distro_scores[:, 2]
     auprBase = 0.0
     recallTemp = 1.0
     for delta in np.arange(start, end, gap):
@@ -162,18 +161,18 @@ def auprIn(name):
 
     # calculate our algorithm
     T = 1000
-    cifar = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
-    other = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
-    if name == "CIFAR-10":
-        start = 0.1
-        end = 0.12 
-    if name == "CIFAR-100":
+    in_distro_scores = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
+    out_distro_scores = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
+    # if in_dataset_name == "CIFAR-10":
+    start = 0.1
+    end = 0.12 
+    if in_dataset_name == "CIFAR-100":
         start = 0.01
         end = 0.0104    
-    gap = (end- start)/100000
+    gap = (end- start)/100000 # TODO wtf is happening here
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
-    Y1 = other[:, 2]
-    X1 = cifar[:, 2]
+    Y1 = out_distro_scores[:, 2]
+    X1 = in_distro_scores[:, 2]
     auprNew = 0.0
     recallTemp = 1.0
     for delta in np.arange(start, end, gap):
@@ -189,21 +188,21 @@ def auprIn(name):
     auprNew += recall * precision
     return auprBase, auprNew
 
-def auprOut(name):
+def auprOut(in_dataset_name):
     #calculate the AUPR
     # calculate baseline
     T = 1
-    cifar = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
-    other = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
-    if name == "CIFAR-10":
-        start = 0.1
-        end = 1 
-    if name == "CIFAR-100":
+    in_distro_scores = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
+    out_distro_scores = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
+    # if in_dataset_name == "CIFAR-10":
+    start = 0.1
+    end = 1 
+    if in_dataset_name == "CIFAR-100":
         start = 0.01
         end = 1    
     gap = (end- start)/100000
-    Y1 = other[:, 2]
-    X1 = cifar[:, 2]
+    Y1 = out_distro_scores[:, 2]
+    X1 = in_distro_scores[:, 2]
     auprBase = 0.0
     recallTemp = 1.0
     for delta in np.arange(end, start, -gap):
@@ -219,18 +218,18 @@ def auprOut(name):
     
     # calculate our algorithm
     T = 1000
-    cifar = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
-    other = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
-    if name == "CIFAR-10":
-        start = 0.1
-        end = 0.12 
-    if name == "CIFAR-100":
+    in_distro_scores = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
+    out_distro_scores = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
+    # if in_dataset_name == "CIFAR-10":
+    start = 0.1
+    end = 0.12 
+    if in_dataset_name == "CIFAR-100":
         start = 0.01
         end = 0.0104    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
-    Y1 = other[:, 2]
-    X1 = cifar[:, 2]
+    Y1 = out_distro_scores[:, 2]
+    X1 = in_distro_scores[:, 2]
     auprNew = 0.0
     recallTemp = 1.0
     for delta in np.arange(end, start, -gap):
@@ -246,22 +245,22 @@ def auprOut(name):
 
 
 
-def detection(name):
+def detection(in_dataset_name):
     #calculate the minimum detection error
     # calculate baseline
     T = 1
-    cifar = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
-    other = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
-    if name == "CIFAR-10": 
-        start = 0.1
-        end = 1 
-    if name == "CIFAR-100": 
+    in_distro_scores = np.loadtxt('./softmax_scores/confidence_Base_In.txt', delimiter=',')
+    out_distro_scores = np.loadtxt('./softmax_scores/confidence_Base_Out.txt', delimiter=',')
+    # if in_dataset_name == "CIFAR-10": 
+    start = 0.1
+    end = 1 
+    if in_dataset_name == "CIFAR-100": 
         start = 0.01
         end = 1    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
-    Y1 = other[:, 2]
-    X1 = cifar[:, 2]
+    Y1 = out_distro_scores[:, 2]
+    X1 = in_distro_scores[:, 2]
     errorBase = 1.0
     for delta in np.arange(start, end, gap):
         tpr = np.sum(np.sum(X1 < delta)) / np.float(len(X1))
@@ -270,18 +269,18 @@ def detection(name):
 
     # calculate our algorithm
     T = 1000
-    cifar = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
-    other = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
-    if name == "CIFAR-10": 
-        start = 0.1
-        end = 0.12 
-    if name == "CIFAR-100": 
+    in_distro_scores = np.loadtxt('./softmax_scores/confidence_Our_In.txt', delimiter=',')
+    out_distro_scores = np.loadtxt('./softmax_scores/confidence_Our_Out.txt', delimiter=',')
+    # if in_dataset_name == "CIFAR-10": 
+    start = 0.1
+    end = 0.12 
+    if in_dataset_name == "CIFAR-100": 
         start = 0.01
         end = 0.0104    
     gap = (end- start)/100000
     #f = open("./{}/{}/T_{}.txt".format(nnName, dataName, T), 'w')
-    Y1 = other[:, 2]
-    X1 = cifar[:, 2]
+    Y1 = out_distro_scores[:, 2]
+    X1 = in_distro_scores[:, 2]
     errorNew = 1.0
     for delta in np.arange(start, end, gap):
         tpr = np.sum(np.sum(X1 < delta)) / np.float(len(X1))
@@ -293,28 +292,26 @@ def detection(name):
 
 
 
-def metric(nn, data):
-    if nn == "densenet10" or nn == "wideresnet10": indis = "CIFAR-10"
-    if nn == "densenet100" or nn == "wideresnet100": indis = "CIFAR-100"
+def metric(nn, in_dataset_name, out_data_name):
     if nn == "densenet10" or nn == "densenet100": nnStructure = "DenseNet-BC-100"
     if nn == "wideresnet10" or nn == "wideresnet100": nnStructure = "Wide-ResNet-28-10"
     
     dataName = ""
-    if data == "Imagenet": dataName = "Tiny-ImageNet (crop)"
-    if data == "Imagenet_resize": dataName = "Tiny-ImageNet (resize)"
-    if data == "LSUN": dataName = "LSUN (crop)"
-    if data == "LSUN_resize": dataName = "LSUN (resize)"
-    if data == "iSUN": dataName = "iSUN"
-    if data == "Gaussian": dataName = "Gaussian noise"
-    if data == "Uniform": dataName = "Uniform Noise"
-    if data == "SVHN_Cropped": dataName = "SVHN_Cropped"
-    fprBase, fprNew = tpr95(indis)
-    errorBase, errorNew = detection(indis)
-    aurocBase, aurocNew = auroc(indis)
-    auprinBase, auprinNew = auprIn(indis)
-    auproutBase, auproutNew = auprOut(indis)
+    if out_data_name == "Imagenet": dataName = "Tiny-ImageNet (crop)"
+    if out_data_name == "Imagenet_resize": dataName = "Tiny-ImageNet (resize)"
+    if out_data_name == "LSUN": dataName = "LSUN (crop)"
+    if out_data_name == "LSUN_resize": dataName = "LSUN (resize)"
+    if out_data_name == "iSUN": dataName = "iSUN"
+    if out_data_name == "Gaussian": dataName = "Gaussian noise"
+    if out_data_name == "Uniform": dataName = "Uniform Noise"
+    if out_data_name == "SVHN_Cropped": dataName = "SVHN_Cropped"
+    fprBase, fprNew = tpr95(in_dataset_name)
+    errorBase, errorNew = detection(in_dataset_name)
+    aurocBase, aurocNew = auroc(in_dataset_name)
+    auprinBase, auprinNew = auprIn(in_dataset_name)
+    auproutBase, auproutNew = auprOut(in_dataset_name)
     print("{:31}{:>22}".format("Neural network architecture:", nnStructure))
-    print("{:31}{:>22}".format("In-distribution dataset:", indis))
+    print("{:31}{:>22}".format("In-distribution dataset:", in_dataset_name))
     print("{:31}{:>22}".format("Out-of-distribution dataset:", dataName))
     print("")
     print("{:>34}{:>19}".format("Baseline", "Our Method"))

@@ -36,6 +36,8 @@ parser = argparse.ArgumentParser(description='Pytorch Detecting Out-of-distribut
 
 parser.add_argument('--nn', default="densenet10", type=str,
                     help='neural network name and training set')
+parser.add_argument('--in_dataset', default="CIFAR-10", type=str,
+                    help='in-distribution dataset')
 parser.add_argument('--out_dataset', default="Imagenet", type=str,
                     help='out-of-distribution dataset')
 parser.add_argument('--magnitude', default=0.0014, type=float,
@@ -78,7 +80,7 @@ parser.set_defaults(argument=True)
 def main():
     global args
     args = parser.parse_args()
-    c.test(args.nn, args.out_dataset, args.gpu, args.magnitude, args.temperature)
+    c.test(args.nn, args.in_dataset, args.out_dataset, args.gpu, args.magnitude, args.temperature)
 
 if __name__ == '__main__':
     main()
