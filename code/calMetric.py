@@ -296,7 +296,7 @@ def metric(nn, in_dataset_name, out_data_name):
     if nn == "densenet10" or nn == "densenet100": nnStructure = "DenseNet-BC-100"
     if nn == "wideresnet10" or nn == "wideresnet100": nnStructure = "Wide-ResNet-28-10"
     
-    dataName = ""
+    dataName = out_data_name
     if out_data_name == "Imagenet": dataName = "Tiny-ImageNet (crop)"
     if out_data_name == "Imagenet_resize": dataName = "Tiny-ImageNet (resize)"
     if out_data_name == "LSUN": dataName = "LSUN (crop)"
